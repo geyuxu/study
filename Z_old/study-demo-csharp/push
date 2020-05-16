@@ -1,0 +1,34 @@
+#! /bin/bash
+
+# 自动保存
+while getopts "a" arg #选项后面的冒号表示该选项需要参数
+do
+        case $arg in
+             a)
+                echo auto save
+                git add -A;git commit -m "自动保存"
+                ;;
+             ?)  #当有不认识的选项的时候arg为?
+            echo "unkonw argument"
+        exit 1
+        ;;
+        esac
+done
+
+#todo 判断是什么环境 cygwin?mac?linux?
+t3=/cygdrive/w/_git/study-demo-csharp
+
+# 判断t3是否被挂载
+if [ -d $t3 ]; then
+    # 推送到t3 , t3 上的钩子会自动推到服务器
+  git push -f t3 master
+else
+    # 网络判断，todo t3上面的钩子也应该进行网络判断
+    ping -c 1 github.com > /dev/null 2>&1
+
+    if [ $? -eq 0 ];then
+        git push -f github master
+    else
+        echo t3 disk and network is not able .
+    fi
+fi
