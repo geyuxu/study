@@ -1,15 +1,16 @@
 package com.geyuxu.demo;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.ChannelPipeline;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.mqtt.MqttDecoder;
-import io.netty.handler.codec.mqtt.MqttEncoder;
+import io.netty.handler.codec.mqtt.*;
+
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,13 +40,21 @@ public class Main {
             // 启动服务
             ChannelFuture future = serverBootstrap.bind(port).sync();
             System.out.println("MQTT server start success,port=" + port);
+            new Thread(new Loop()).start();
+
             future.channel().closeFuture().sync();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
+
+
     }
+
+
 
 }

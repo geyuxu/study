@@ -1,14 +1,16 @@
 package com.geyuxu.demo;
 
-import io.netty.channel.ChannelHandler;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.mqtt.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.sun.jmx.remote.internal.IIOPHelper.connect;
 
 public class MyMqttHandlers extends SimpleChannelInboundHandler<MqttMessage> {
 
@@ -32,14 +34,16 @@ public class MyMqttHandlers extends SimpleChannelInboundHandler<MqttMessage> {
     }
 
     private void pingReq(ChannelHandlerContext ctx) {
+
+
     }
 
     private void connect(ChannelHandlerContext ctx, MqttConnectMessage msg) {
         String clientIdentifier = msg.payload().clientIdentifier();
-        String userName = msg.payload().userName();
-        String password = new String(msg.payload().passwordInBytes());
-        // 此处可以鉴权
-        System.out.println(clientIdentifier + " " + userName + " " + password);
+//        String userName = msg.payload().userName();
+//        String password = new String(msg.payload().passwordInBytes());
+//        // 此处可以鉴权
+//        System.out.println(clientIdentifier + " " + userName + " " + password);
         // 此处保存用户和连接之间的关系
         ChannelManager.saveChannelMapping(clientIdentifier, ctx.channel());
         MqttFixedHeader connAckFixedHeaderRes = new MqttFixedHeader(MqttMessageType.CONNACK, false, MqttQoS.AT_MOST_ONCE, false, 0);
