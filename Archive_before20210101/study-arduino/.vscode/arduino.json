@@ -1,5 +1,0 @@
-{
-    "board": "arduino:avr:uno",
-    "port": "/dev/cu.serial0",
-    "sketch": "s1/s1.ino"
-}

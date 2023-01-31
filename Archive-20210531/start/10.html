@@ -1,0 +1,25 @@
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   
+</head>
+<body>
+    <div id = "app">
+       <div v-bind:id="dynamicId">test</div>
+       <button v-bind:disabled="isButtonDisabled">Button</button>
+    </div>
+<script>
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    rawHtml:"<a href='.'>hello world</a>",
+    dynamicId:"aaa",
+    isButtonDisabled:true
+  }
+})
+
+</script>
+</body>
+</html>

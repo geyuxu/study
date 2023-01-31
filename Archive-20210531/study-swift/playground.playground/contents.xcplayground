@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='macos' executeOnSourceChanges='false'>
+    <pages>
+        <page name='001_basic'/>
+        <page name='000_start'/>
+        <page name='002_oper'/>
+        <page name='003_string'/>
+        <page name='004_set'/>
+    </pages>
+</playground>

@@ -1,6 +1,0 @@
-task helloWorld{
-	doLast {
-		println '苟利国家生死以，岂因祸福避趋之。'
-		println 'Hello World'
-	}
-}
