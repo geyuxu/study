@@ -1,4 +1,3 @@
-
 pub fn test() {
     let v = "Hello world";
     assert_eq!(v,"Hello world");
