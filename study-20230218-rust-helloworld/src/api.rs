@@ -1,3 +1,4 @@
+#![feature(decl_macro)]
 
 use rocket::{Request, response::status::NotFound};
 

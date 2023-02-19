@@ -20,12 +20,12 @@ use once_cell::sync::Lazy;
 use rocket_contrib::json;
 
 use crate::domain::user::{User,ID};
-use crate::api::static_rocket_route_info_for_create_user;
-use crate::api::static_rocket_route_info_for_get_user;
-use crate::api::static_rocket_route_info_for_update_user;
-use crate::api::static_rocket_route_info_for_list_users;
-
-use crate::api::static_rocket_catch_info_for_not_found;
+// use crate::api::static_rocket_route_info_for_create_user;
+// use crate::api::static_rocket_route_info_for_get_user;
+// use crate::api::static_rocket_route_info_for_update_user;
+// use crate::api::static_rocket_route_info_for_list_users;
+//
+// use crate::api::static_rocket_catch_info_for_not_found;
 
 
 
@@ -37,7 +37,12 @@ fn main() {
     // study04_while_let::test2();
 
     rocket::ignite()
-        .mount("/", routes![create_user, get_user, update_user,list_users])
-        .register(catchers![not_found])
+        .mount("/", routes![
+            api::create_user,
+            api::get_user,
+            api::update_user,
+            api::list_users
+        ])
+        .register(catchers![api::not_found])
         .launch();
 }
