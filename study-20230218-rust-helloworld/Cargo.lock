@@ -1713,6 +1713,7 @@ dependencies = [
  "elasticsearch",
  "json",
  "once_cell",
+ "rand",
  "rocket",
  "rocket_contrib",
  "serde",
